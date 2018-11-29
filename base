@@ -1,0 +1,32 @@
+nginx.conf -> /etc/nginx/nginx.conf
+site1.conf -> /etc/nginx/sites-avaliable/site1.conf (+ символьная ссылка в /etc/nginx/sites-enabled)
+site2.conf -> /etc/nginx/sites-avaliable/site2.conf (+ символьная ссылка в /etc/nginx/sites-enabled)
+
+httpd.conf -> /etc/httpd/conf/httpd.conf
+site1.conf -> /etc/httpd/sites-avaliable/site1.conf (+ символьная ссылка в /etc/httpd/sites-enabled)
+site2.conf -> /etc/httpd/sites-avaliable/site2.conf (+ символьная ссылка в /etc/httpd/sites-enabled)
+
+php.conf -> etc/httpd/conf.d/php.conf and cp /etc/httpd/sites-enabled/php.conf
+
+[root@test ~]# usermod -a -G domainname wwwuser # юзер с nginx.conf
+[root@test ~]# usermod -a -G name.site nginx/apache ???
+
+модуль apache2-mpm-prefork (1 поток = 1 соединение, рекоммендовано при работе с PHP)
+
+var/
+____www/
+________site1.ru/                             /файлы сайта
+_________________wp-includes/                 /статические файлы
+_________________temp/                        /временные файлы
+________log/                                  /логи сайта
+____________php/
+________________php.log
+____________nginx/
+__________________site1-access.log
+__________________site2-access.log
+__________________error.log
+____________apache/
+___________________site1_error_msg
+___________________site1_gen_msg
+___________________site2_error_msg
+___________________site1_gen_msg
